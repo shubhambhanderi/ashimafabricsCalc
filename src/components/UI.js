@@ -74,7 +74,7 @@ function UI() {
   const handleClick = () => {
     message.loading("Searching the code...");
     // if (data['read'] != "0" && data['pick'] != "0" && data['width'] != "0" && data['read'] != "" && data['pick'] != "" && data['width'] != "") {
-    axios.get("https://script.google.com/macros/s/AKfycbzaNk5lUKZbUYO46uK47K317HMUPVOzIQuPQhhpGzkDFCcxIcc/exec?findCodeFromData=true&read=" + data['read'] + "&pick=" + data['pick'] + "&width=" + data['width'])
+    axios.get("https://script.google.com/macros/s/AKfycbwyKPzFJjmlnZGNly6dYgnKExNIpZnb-qyFOrVsC7k7jlxtq5l8/exec?findCodeFromData=true&read=" + data['read'] + "&pick=" + data['pick'] + "&width=" + data['width'])
       .then(res => {
         console.log(res)
         if (res.data.foundCodeFromData !== false) {
