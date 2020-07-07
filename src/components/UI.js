@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Select, Input } from 'antd';
+import { Select, Input, message, Button } from 'antd';
 import './UI.css';
 import Code from "./Code";
+import axios from 'axios';
 const { Option } = Select;
 
 
@@ -21,6 +22,7 @@ function UI() {
   const [weight, setWeight] = useState();
   const [warpValue, setWarpValue] = useState();
   const [weftValue, setWeftValue] = useState();
+  const [foundCode, setFoundCode] = useState(false);
   useEffect(() => {
     return
   }, [mode]);
@@ -52,6 +54,10 @@ function UI() {
     setSellingRate(e.target.value);
   }
 
+  const success = () => {
+    message.success('This is a success message');
+  };
+
   useEffect(() => {
     // return () => {
     let temp_warp_value = (parseFloat(data['ends']) * parseFloat(data['warpDinier']) * 110) / 9000000;
@@ -64,6 +70,23 @@ function UI() {
     // console.log('warpValue', warpValue)
     // }
   })//, [data, rateWarp])
+
+  const handleClick = () => {
+    message.loading("Searching the code...");
+    // if (data['read'] != "0" && data['pick'] != "0" && data['width'] != "0" && data['read'] != "" && data['pick'] != "" && data['width'] != "") {
+    axios.get("https://script.google.com/macros/s/AKfycbzaNk5lUKZbUYO46uK47K317HMUPVOzIQuPQhhpGzkDFCcxIcc/exec?findCodeFromData=true&read=" + data['read'] + "&pick=" + data['pick'] + "&width=" + data['width'])
+      .then(res => {
+        console.log(res)
+        if (res.data.foundCodeFromData !== false) {
+          message.success('Code found');
+          setFoundCode(true);
+          setData(res.data.foundCodeFromData);
+        } else {
+          message.error("No such code found");
+        }
+      })
+    // }
+  }
 
   function handleWarpMethod(e) {
     setRateWarp(e.target.value);
@@ -148,6 +171,9 @@ function UI() {
         {mode && <Code data={data} setData={setData} />}
       </div>
       <div className="topMargin">
+        {mode && foundCode && <Input type="text" value={"Current Code: " + data['code']} style={{ textAlign: "center" }} readOnly />}
+      </div>
+      <div className="topMargin">
         <table>
           <thead>
             <tr>
@@ -173,8 +199,9 @@ function UI() {
             <br />
             <tr>
               <td style={{ width: "20%" }}>ENDS:</td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#FBD0CF" }} value={ends} /></td>
+              <td><Input type="number" style={{ width: "100%", backgroundColor: "#FBD0CF" }} value={ends} readOnly /></td>
               <td><Input type="number" style={{ width: "100%", backgroundColor: "#FBD0CF" }} value={data['ends']} onChange={onEndChange} /></td>
+              {mode && <td style={{ float: "right" }}><Button type="primary" onClick={handleClick} danger>Find</Button></td>}
             </tr>
           </tbody>
         </table>
@@ -252,7 +279,7 @@ function UI() {
           <tbody>
             <tr>
               <td><Input type="number" style={{ width: "100%" }} value={weight} readOnly /></td>
-              <td><Input type="number" style={{ width: "100%" }} value={parseFloat(weight) / 100 / parseFloat(data['width']) * 39.36} readOnly /></td>
+              <td><Input type="number" style={{ width: "100%" }} value={parseFloat(weight) / parseFloat(data['width']) * 393.6} readOnly /></td>
             </tr>
           </tbody>
         </table>

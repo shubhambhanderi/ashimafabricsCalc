@@ -10,7 +10,7 @@ function Code(props) {
   // const [currentCode, setCurrentCode] = useState(null);
 
   useEffect(() => {
-    axios.get('https://script.google.com/macros/s/AKfycbzFUWnahPRuSEgrJQTROThXHvqBkxGE_RDCRgng_gnlGovAKJeJ/exec?getCode=true')
+    axios.get('https://script.google.com/macros/s/AKfycbzaNk5lUKZbUYO46uK47K317HMUPVOzIQuPQhhpGzkDFCcxIcc/exec?getCode=true')
       .then(res => {
         console.log(Object.values(res.data.codes))
         setCodes(Object.values(res.data.codes));
@@ -26,7 +26,7 @@ function Code(props) {
   function onChange(value) {
     console.log(`selected ${value}`);
     // setCurrentCode(value);
-    axios.get('https://script.google.com/macros/s/AKfycbzFUWnahPRuSEgrJQTROThXHvqBkxGE_RDCRgng_gnlGovAKJeJ/exec?code=' + value)
+    axios.get('https://script.google.com/macros/s/AKfycbzaNk5lUKZbUYO46uK47K317HMUPVOzIQuPQhhpGzkDFCcxIcc/exec?code=' + value)
       .then(res => {
         console.log('getting this', res.data);
         setData(res.data);
