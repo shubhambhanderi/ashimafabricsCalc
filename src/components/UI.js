@@ -8,7 +8,7 @@ const { Option } = Select;
 
 function UI() {
   const [mode, setMode] = useState(true);//true = online and false = offline
-  const [data, setData] = useState({ code: "0", read: "0", pick: "0", width: "0", ends: "0", view: "", warp: "", warpDinier: "0", weft: "", weftDinier: "0" });
+  const [data, setData] = useState({ code: "", read: "", pick: "", width: "", ends: "", view: "", warp: "", warpDinier: "", weft: "", weftDinier: "" });
   const [read, setRead] = useState();
   const [pick, setPick] = useState();
   const [width, setWidth] = useState();
@@ -186,21 +186,21 @@ function UI() {
           <tbody>
             <tr>
               <td style={{ width: "20%" }}>ON Table:</td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#589DD1" }} value={data['read']} onChange={onReadChange} /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#FEE89B" }} value={data['pick']} onChange={onPickChange} /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#F6C8AD" }} value={data['width']} onChange={onWidthChange} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#589DD1" }} value={data['read']} onChange={onReadChange} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#FEE89B" }} value={data['pick']} onChange={onPickChange} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#F6C8AD" }} value={data['width']} onChange={onWidthChange} /></td>
             </tr>
             <tr>
               <td style={{ width: "20%" }}>ON Loom:</td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#589DD1" }} value={read} readOnly /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#FEE89B" }} value={pick} readOnly /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#F6C8AD" }} value={width} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#589DD1" }} value={read} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#FEE89B" }} value={pick} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#F6C8AD" }} value={width} readOnly /></td>
             </tr>
             <br />
             <tr>
               <td style={{ width: "20%" }}>ENDS:</td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#FBD0CF" }} value={ends} readOnly /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#FBD0CF" }} value={data['ends']} onChange={onEndChange} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#FBD0CF" }} value={ends} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#FBD0CF" }} value={data['ends']} onChange={onEndChange} /></td>
               {mode && <td style={{ float: "right" }}><Button type="primary" onClick={handleClick} danger>Find</Button></td>}
             </tr>
           </tbody>
@@ -234,13 +234,13 @@ function UI() {
           <tbody>
             <tr>
               <td style={{ width: "20%" }}>YARN:</td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#C7E4CA" }} value={data['warpDinier']} onChange={onWarpDinierChange} /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#C7E4CA" }} value={data['weftDinier']} onChange={onWeftDinierChange} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#C7E4CA" }} value={data['warpDinier']} onChange={onWarpDinierChange} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#C7E4CA" }} value={data['weftDinier']} onChange={onWeftDinierChange} /></td>
             </tr>
             <tr>
               <td style={{ width: "20%" }}>RATE:</td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#BCE1F7" }} onChange={handleWarpMethod} value={rateWarp} /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#BCE1F7" }} onChange={handleWeftMethod} value={rateWeft} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#BCE1F7" }} onChange={handleWarpMethod} value={rateWarp} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#BCE1F7" }} onChange={handleWeftMethod} value={rateWeft} /></td>
             </tr>
           </tbody>
         </table>
@@ -256,14 +256,14 @@ function UI() {
           </thead>
           <tbody>
             <tr>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#6EB546" }} value={yarnRate} readOnly /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#4A6AB2" }} value={sellingRate} onChange={handleSellingRate} /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#4A6AB2" }} value={parseFloat(sellingRate) * 5 / 100 + parseFloat(sellingRate)} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#6EB546" }} value={yarnRate} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#4A6AB2" }} value={sellingRate} onChange={handleSellingRate} /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#4A6AB2" }} value={parseFloat(sellingRate) * 5 / 100 + parseFloat(sellingRate)} readOnly /></td>
             </tr>
             <tr>
-              <td><Input type="number" style={{ width: "100%" }} value={parseFloat(yarnRate) / 100} readOnly /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#6EB546" }} value={(parseFloat(sellingRate) - (parseFloat(yarnRate) / 100))} readOnly /></td>
-              <td><Input type="number" style={{ width: "100%", backgroundColor: "#6EB546" }} value={(parseFloat(sellingRate) * 5 / 100 + parseFloat(sellingRate)) - (parseFloat(yarnRate) / 100)} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%" }} value={parseFloat(yarnRate) / 100} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#6EB546" }} value={(parseFloat(sellingRate) - (parseFloat(yarnRate) / 100))} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%", backgroundColor: "#6EB546" }} value={(parseFloat(sellingRate) * 5 / 100 + parseFloat(sellingRate)) - (parseFloat(yarnRate) / 100)} readOnly /></td>
             </tr>
           </tbody>
         </table>
@@ -274,12 +274,14 @@ function UI() {
             <tr>
               <th>Weight:</th>
               <th>GSM:</th>
+              {mode && <th>View:</th>}
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><Input type="number" style={{ width: "100%" }} value={weight} readOnly /></td>
-              <td><Input type="number" style={{ width: "100%" }} value={parseFloat(weight) / parseFloat(data['width']) * 393.6} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%" }} value={weight} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%" }} value={parseFloat(weight) / parseFloat(data['width']) * 393.6} readOnly /></td>
+              {mode && <td><Input type="text" style={{ width: "100%" }} value={data['view']} readOnly /></td>}
             </tr>
           </tbody>
         </table>
