@@ -286,6 +286,22 @@ function UI() {
           </tbody>
         </table>
       </div>
+      <div className="topMargin">
+        <table >
+          <thead>
+            <tr>
+              <th>Warp Value:</th>
+              <th>Weft Value:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%" }} value={warpValue} readOnly /></td>
+              <td><Input type="number" inputmode="tel" style={{ width: "100%" }} value={weftValue} readOnly /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
